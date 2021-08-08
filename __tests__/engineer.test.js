@@ -11,6 +11,7 @@ test('can set values via constructor argument', () => {
     expect (engineer.name).toEqual("Jane");
     expect (engineer.id).toEqual(20);
     expect (engineer.email).toEqual("jane@doe.com");
+    expect (engineer.github).toEqual("janedoe")
   })
 
 // test to see if my methods for getting data work correctly
@@ -32,4 +33,9 @@ test('creates engineer email', () => {
 test('creates engineer github', () => {
     const engineer = new Engineer('Jane', 20, "jane@doe.com", "janedoe");
     expect (engineer.getGithub()).toEqual(expect.any(String))
+})
+
+test('creates engineer role', () => {
+    const engineer = new Engineer('Jane', 20, "jane@doe.com", "janedoe");
+    expect (engineer.getRole()).toBe("Engineer")
 })

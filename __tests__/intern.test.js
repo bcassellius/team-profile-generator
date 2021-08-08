@@ -30,7 +30,7 @@ test('creates intern email', () => {
     expect (intern.getEmail()).toEqual(expect.any(String))
 });
 
-test('creates employee role', () => {
+test('creates intern role', () => {
     const intern = new Intern('Somebody', 30, "somebody@special.com", "University of Somewhere");
     expect (intern.getRole()).toBe("Intern")
 })
