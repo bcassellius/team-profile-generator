@@ -2,9 +2,6 @@ const inquirer = require('inquirer');
 const fs = require ('fs');
 const generatePage = require ('./src/generatePage');
 
-
-// TODO: Include packages needed for this application
-
 // array of questions for user input
 const questions = [
     {
@@ -22,7 +19,7 @@ const questions = [
     {
         type: 'list',
         name: 'role',
-        message: 'Which license would you like to use?',
+        message: 'Which role does this person have?',
         choices: ['Employee', 'Manager', 'Engineer', 'Intern'],
     },
     {
@@ -87,11 +84,29 @@ const questions = [
     }
 ];
 
-// // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
-
-// // TODO: Create a function to initialize app
-// function init() {}
-
-// // Function call to initialize app
-// init();
+// a function to write team file
+const writeFile = fileContent => {
+    return new Promise((resolve, reject) => {
+      fs.writeFile('./dist/index.html', generatePage(fileContent), err => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve({
+          ok: true,
+          message: 'A team has been created. Find it in the dist folder!'
+        });
+      });
+    });
+  };
+  
+  // initialize app
+  function init() {
+    inquirer.prompt(questions)
+    .then(inquirerResponses => {
+      writeFile(inquirerResponses);
+      console.log(`Your team has been created in the dist folder!`);
+    }
+  )}; 
+  
+  init()
