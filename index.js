@@ -100,13 +100,14 @@ const writeFile = fileContent => {
     });
   };
   
-  // initialize app
-  function init() {
-    inquirer.prompt(questions)
-    .then(inquirerResponses => {
+// initialize app
+function init() {
+  inquirer.prompt(questions)
+  .then(inquirerResponses => {
       writeFile(inquirerResponses);
+      console.log(inquirerResponses);
       console.log(`Your team has been created in the dist folder!`);
-    }
-  )}; 
+  }
+)}; 
   
-  init()
+init()
